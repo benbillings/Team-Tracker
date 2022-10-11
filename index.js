@@ -1,14 +1,14 @@
-const employee = require('./lib/employee');
-const engineer = require('./lib/engineer');
-const intern = require('./lib/intern');
-const manager = require('./lib/manager');
+const Engineer = require('./lib/engineer');
+const Intern = require('./lib/intern');
+const Manager = require('./lib/manager');
 
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-const HTMLstructure = require ('./src/generate-html');
+const HTMLstructure = require ('./dist/generate-html');
 // const { create } = require('domain');
 
+const teamArr = [];
 const createTeam = () => {
     inquirer.prompt([
         {
@@ -17,35 +17,35 @@ const createTeam = () => {
             message: "Welcome to the Team Building and Tracking application. Please enter the manager's name:",
             default: 'Manager Name',
         },
-        // {
-        //     type: 'input',
-        //     name: 'employeeID',
-        //     message: "Please enter the manager's employee ID number:",
-        //     default: 'ID',
-        // },
-        // {
-        //     type: 'input',
-        //     name: 'email',
-        //     message: "Please enter the manager's email address:",
-        //     default: 'manager@email.com',
-        // },
-        // {
-        //     type: 'input',
-        //     name: 'office',
-        //     message: "Please enter the manager's office number:",
-        //     default: '1',
-        // }
+        {
+            type: 'input',
+            name: 'id',
+            message: "Please enter the manager's employee ID number:",
+            default: 'ID',
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: "Please enter the manager's email address:",
+            default: 'manager@email.com',
+        },
+        {
+            type: 'input',
+            name: 'office',
+            message: "Please enter the manager's office number:",
+            default: 'Office Number',
+        }
     ])
         
         .then(function(answer){
-            // console.log(answer);
+            const manager = new Manager(answer.name, answer.id, answer.email, answer.office);
+            teamArr.push(manager);
             addToTeam();
             // add data to classes for html structure
         })
 }
     
     
-
 const addToTeam = () => {    
     inquirer.prompt([
         {
@@ -66,9 +66,8 @@ const addToTeam = () => {
             finalizeTeam();
         }
     })
-       
+    
 }
-
 
 const addIntern = () => {
     inquirer.prompt([
@@ -80,7 +79,7 @@ const addIntern = () => {
         },
         {
             type: 'input',
-            name: 'employeeID',
+            name: 'id',
             message: "Enter intern's employee ID:",
             default: 'ID',
         },
@@ -98,7 +97,10 @@ const addIntern = () => {
         }
     ])
     .then(function(answer) {
-        console.log(answer);
+        const intern = new Intern(answer.name, answer.id, answer.email, answer.school);
+        teamArr.push(intern);
+        
+        // return to menu
         addToTeam();
     })
 }
@@ -113,7 +115,7 @@ const addEngineer = () => {
         },
         {
             type: 'input',
-            name: 'employeeID',
+            name: 'id',
             message: "Enter engineer's employee ID:",
             default: 'ID',
         },
@@ -131,13 +133,17 @@ const addEngineer = () => {
         }
     ])
     .then(function(answer) {
-        console.log(answer);
+        const engineer = new Engineer(answer.name, answer.id, answer.email, answer.github);
+        teamArr.push(engineer);
         addToTeam();
     })
 }
 
 const finalizeTeam = () => {
-    console.log('finalize team');
+    // console.log('finalize team');
+    teamArr.forEach((team) => {
+        console.log(team);
+    })
 }
 
 createTeam();
