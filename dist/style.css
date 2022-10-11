@@ -12,11 +12,18 @@
 h1.team-header {
     padding: 2% 0;
     border-bottom: 2px black solid;
-    margin: 0% 5%;
 }
 
 .d-flex {
     justify-content: space-around;
     flex-flow: wrap row;
     margin-top: 2%;
+}
+
+div.row {
+    margin: 0 5%;
+}
+
+.icon {
+    margin-right: 2%;
 }

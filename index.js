@@ -5,8 +5,7 @@ const Manager = require('./lib/manager');
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-const HTMLstructure = require ('./lib/generate-html');
-// const { create } = require('domain');
+const generateteam = require('./lib/generate-html');
 
 const teamArr = [];
 const createTeam = () => {
@@ -139,9 +138,14 @@ const addEngineer = () => {
 }
 
 const finalizeTeam = () => {
-    // console.log('finalize team');
-    teamArr.forEach((team) => {
-        console.log(team);
+    // addToFile(teamArr);
+    console.log(teamArr);
+}
+
+const addToFile = (teamArr) => {
+    fs.writeFile('./dist/index.html', generateTeam(teamArr), (err) => { 
+        if (err) throw err;
+        console.log('Team Homepage created! Check the dist directory for your finalized webpage.'); 
     })
 }
 
