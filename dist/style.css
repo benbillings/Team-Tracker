@@ -1,0 +1,15 @@
+:root {
+    --purple: #6174ea;
+    --orange: #e5552f;
+    --mint: #78c9ba;
+    --light: #efffff;
+}
+
+* {
+    font-family: 'Playfair Display', 'Times New Roman', Times, serif;
+}
+
+.team-header {
+    padding: 1%;
+    font-size: 1.8em;
+}

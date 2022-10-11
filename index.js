@@ -5,7 +5,7 @@ const Manager = require('./lib/manager');
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-const HTMLstructure = require ('./dist/generate-html');
+const HTMLstructure = require ('./lib/generate-html');
 // const { create } = require('domain');
 
 const teamArr = [];
@@ -44,8 +44,7 @@ const createTeam = () => {
             // add data to classes for html structure
         })
 }
-    
-    
+        
 const addToTeam = () => {    
     inquirer.prompt([
         {
