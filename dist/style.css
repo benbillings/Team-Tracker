@@ -9,7 +9,14 @@
     font-family: 'Playfair Display', 'Times New Roman', Times, serif;
 }
 
-.team-header {
-    padding: 1%;
-    font-size: 1.8em;
+h1.team-header {
+    padding: 2% 0;
+    border-bottom: 2px black solid;
+    margin: 0% 5%;
+}
+
+.d-flex {
+    justify-content: space-around;
+    flex-flow: wrap row;
+    margin-top: 2%;
 }
