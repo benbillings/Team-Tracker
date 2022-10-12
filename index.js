@@ -5,7 +5,8 @@ const Manager = require('./lib/manager');
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-const generateteam = require('./lib/generate-html');
+// const generateHTML = require('./lib/generate-html');
+const generateTeam = require('./lib/generate-html');
 
 const teamArr = [];
 const createTeam = () => {
@@ -61,7 +62,7 @@ const addToTeam = () => {
         } else if (answer.type === 'Engineer') {
             addEngineer();
         } else if (answer.type === 'Finalize Team') {
-            finalizeTeam();
+            generateTeam(teamArr);
         }
     })
     
@@ -138,14 +139,18 @@ const addEngineer = () => {
 }
 
 const finalizeTeam = () => {
-    // addToFile(teamArr);
-    console.log(teamArr);
+    // console.log(teamArr);
+    generateTeam(teamArr);
+    // createFile(employeeData);
 }
 
-const addToFile = (teamArr) => {
-    fs.writeFile('./dist/index.html', generateTeam(teamArr), (err) => { 
-        if (err) throw err;
-        console.log('Team Homepage created! Check the dist directory for your finalized webpage.'); 
+const createFile = (employeeData) => {
+    fs.writeFile('./dist/index.html', employeeData, (err) => { 
+        if (err) { 
+            throw err;
+        } else {
+            console.log('Team Homepage created! Check the ./dist directory for your finalized webpage.'); 
+        }
     })
 }
 
