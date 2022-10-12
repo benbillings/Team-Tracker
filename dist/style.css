@@ -14,6 +14,15 @@ h1.team-header {
     border-bottom: 2px black solid;
 }
 
+h2, a, .cap {
+    text-transform: capitalize;
+}
+
+a {
+    text-decoration: none;
+    margin-right: 1%;
+}
+
 .d-flex {
     justify-content: space-around;
     flex-flow: wrap row;

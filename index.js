@@ -5,7 +5,7 @@ const Manager = require('./lib/manager');
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-// const generateHTML = require('./lib/generate-html');
+// const renderCards = require('./lib/generate-html');
 const generateTeam = require('./lib/generate-html');
 
 const teamArr = [];
@@ -55,14 +55,13 @@ const addToTeam = () => {
         }
     ])
     .then(function(answer){
-        // console.log(answer);
-        // console.log(answer.type);
         if (answer.type === 'Intern') {
             addIntern();
         } else if (answer.type === 'Engineer') {
             addEngineer();
         } else if (answer.type === 'Finalize Team') {
-            generateTeam(teamArr);
+            const htmlOutput = generateTeam(teamArr);
+            createFile(htmlOutput);
         }
     })
     
@@ -138,14 +137,8 @@ const addEngineer = () => {
     })
 }
 
-const finalizeTeam = () => {
-    // console.log(teamArr);
-    generateTeam(teamArr);
-    // createFile(employeeData);
-}
-
-const createFile = (employeeData) => {
-    fs.writeFile('./dist/index.html', employeeData, (err) => { 
+const createFile = (htmlOutput) => {
+    fs.writeFile('./dist/index.html', htmlOutput, (err) => { 
         if (err) { 
             throw err;
         } else {
